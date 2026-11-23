@@ -570,6 +570,7 @@ def test_select_proxies(url, expected, proxies):
     (
         ('foo="is a fish", bar="as well"', {"foo": "is a fish", "bar": "as well"}),
         ("key_without_value", {"key_without_value": None}),
+        ('realm = "test", nonce = "abc", qop="auth"', {"realm": "test", "nonce": "abc", "qop": "auth"}),
     ),
 )
 def test_parse_dict_header(value, expected):
