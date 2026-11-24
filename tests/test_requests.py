@@ -1295,6 +1295,17 @@ class TestRequests:
         }
         assert r.links["next"]["rel"] == "next"
 
+    def test_cookie_multiple_domains(self):
+        single = requests.cookies.RequestsCookieJar()
+        single.set("a", "1", domain="example.com")
+        single.set("b", "2", domain="example.com")
+        assert not single.multiple_domains()
+
+        multiple = requests.cookies.RequestsCookieJar()
+        multiple.set("a", "1", domain="example.com")
+        multiple.set("b", "2", domain="other.com")
+        assert multiple.multiple_domains()
+
     def test_cookie_parameters(self):
         key = "some_cookie"
         value = "some_value"
